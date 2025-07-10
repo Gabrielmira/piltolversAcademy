@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Answer {
+  id         String   @id
+  questionId String
+  attemptId  String
+  selected   Int
+  isCorrect  Boolean
+  Attempt    Attempt  @relation(fields: [attemptId], references: [id])
+  Question   Question @relation(fields: [questionId], references: [id])
+}
+
+model Attempt {
+  id          String   @id
+  userId      String
+  examId      String
+  score       Int
+  timeSpent   Int
+  completedAt DateTime @default(now())
+  Answer      Answer[]
+  Exam        Exam     @relation(fields: [examId], references: [id])
+  User        User     @relation(fields: [userId], references: [id])
+}
+
+model Exam {
+  id            String     @id
+  title         String
+  difficulty    String?
+  estimatedTime Int?
+  creatorId     String
+  createdAt     DateTime   @default(now())
+  Attempt       Attempt[]
+  User          User       @relation(fields: [creatorId], references: [id])
+  Question      Question[]
+}
+
+model Question {
+  id            String   @id
+  statement     String
+  options       String[]
+  correctAnswer Int
+  examId        String
+  Answer        Answer[]
+  Exam          Exam     @relation(fields: [examId], references: [id])
+}
+
+model User {
+  id        String    @id
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  clerkId   String    @unique
+  name      String?
+  Attempt   Attempt[]
+  Exam      Exam[]
+}
