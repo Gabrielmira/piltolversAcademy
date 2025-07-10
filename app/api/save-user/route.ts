@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { PrismaClient } from "@/lib/generated/prisma"
+import { PrismaClient } from "../../../node_modules/.prisma/client"
 import {nanoid} from "nanoid";
 
 export async function POST(req: Request) {
