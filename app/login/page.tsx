@@ -55,7 +55,7 @@ export default function LoginPage() {
               <BookOpen className="h-8 w-8 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold">Piltove's Academy</CardTitle>
+          <CardTitle className="text-2xl font-bold">Piltover's Academy</CardTitle>
           <CardDescription>Entre na sua conta para acessar suas provas</CardDescription>
         </CardHeader>
         <CardContent>
