@@ -30,7 +30,7 @@ export default function VerifyEmailPage() {
             })
 
             if (completeSignUp.status === "complete") {
-                // Agora sim temos o userId definitivo!
+                // Agora sim temos o userId definitivo
                 console.log("✅ Verificação completa! UserId:", completeSignUp.createdUserId)
 
                 // Ativa a sessão
